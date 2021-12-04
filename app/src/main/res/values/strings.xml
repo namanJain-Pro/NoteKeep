@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">NoteTaking</string>
+    <string name="app_name">NoteKeep</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_google">Sign In With Google</string>
 </resources>
