@@ -1,4 +1,4 @@
-package dev.naman.notetaking;
+package dev.naman.notetaking.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import dev.naman.notetaking.R;
 
 public class SplashScreen extends AppCompatActivity {
 
