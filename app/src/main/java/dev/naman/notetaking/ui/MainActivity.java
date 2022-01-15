@@ -2,22 +2,31 @@ package dev.naman.notetaking.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
+
 
 import dev.naman.notetaking.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private ImageView profile_image;
+    private NoteViewModel mNoteViewModel;
+
+    private ImageView mProfileImage;
+    private RecyclerView mRecyclerView;
+    private LottieAnimationView mEmptyAnimation;
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -26,17 +35,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initializing variables
-        profile_image = findViewById(R.id.profile_image);
+        mProfileImage = findViewById(R.id.profile_image);
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mEmptyAnimation = findViewById(R.id.empty_lottie);
+
         mAuth = FirebaseAuth.getInstance();
+        mNoteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
 
         // Setting Up User Profile
         FirebaseUser user = mAuth.getCurrentUser();
-        Picasso.get().load(user.getPhotoUrl()).into(profile_image);
-        profile_image.setOnClickListener(v -> {
+        Picasso.get().load(user.getPhotoUrl()).into(mProfileImage);
+        mProfileImage.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
             finish();
         });
 
+        // Checking if database has any data and updating UI
+        if (mNoteViewModel.getAllNotes().getValue() == null) {
+            mEmptyAnimation.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mEmptyAnimation.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }

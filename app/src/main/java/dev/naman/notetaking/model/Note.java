@@ -1,12 +1,29 @@
 package dev.naman.notetaking.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "note_table")
 public class Note {
 
+    @PrimaryKey(autoGenerate = true)
     private final int id;
+
+    @ColumnInfo(name = "content")
     private String content;
+
+    @ColumnInfo(name = "title")
     private String title;
+
+    @ColumnInfo(name = "date")
     private String date;
+
+    @ColumnInfo(name = "color")
     private String color;
+
+    @ColumnInfo(name = "priority")
     private Priority priority;
 
     public Note(int id, String content, String title, String date, String color, Priority priority) {
