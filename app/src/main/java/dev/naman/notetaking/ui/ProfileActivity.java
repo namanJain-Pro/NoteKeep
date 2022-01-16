@@ -49,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
                     .setPositiveButton("Yes", (dialog, which) -> {
                         FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
                     })

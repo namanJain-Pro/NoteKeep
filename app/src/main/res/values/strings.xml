@@ -13,4 +13,6 @@
     <string name="priority">Priority</string>
     <string name="date">Date</string>
     <string name="log_out">Log out</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
 </resources>

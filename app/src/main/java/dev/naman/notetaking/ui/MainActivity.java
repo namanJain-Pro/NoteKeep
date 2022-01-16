@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mProfileImage;
     private RecyclerView mRecyclerView;
     private LottieAnimationView mEmptyAnimation;
+    private FloatingActionButton mNewNoteBTN;
 
     private static final String TAG = "MainActivity";
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mProfileImage = findViewById(R.id.profile_image);
         mRecyclerView = findViewById(R.id.recycler_view);
         mEmptyAnimation = findViewById(R.id.empty_lottie);
+        mNewNoteBTN = findViewById(R.id.new_note_fab);
 
         mAuth = FirebaseAuth.getInstance();
         mNoteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         mProfileImage.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
-            finish();
         });
 
         // Checking if database has any data and updating UI
@@ -59,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
             mEmptyAnimation.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
         }
+
+        // Setting on click listener for new note button
+        mNewNoteBTN.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
+            startActivity(intent);
+        });
     }
 }
