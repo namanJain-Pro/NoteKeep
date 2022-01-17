@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Note implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private final int id;
+    private int id;
 
     @ColumnInfo(name = "content")
     private String content;
@@ -25,9 +25,13 @@ public class Note implements Serializable {
     private String color;
 
     @ColumnInfo(name = "priority")
-    private Priority priority;
+    private int priority;
 
-    public Note(int id, String content, String title, String date, String color, Priority priority) {
+    public Note() {
+        this.id = 0;
+    }
+
+    public Note(int id, String content, String title, String date, String color, int priority) {
         this.id = id;
         this.content = content;
         this.title = title;
@@ -40,23 +44,47 @@ public class Note implements Serializable {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDate() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getColor() {
         return color;
     }
 
-    public Priority getPriority() {
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getPriority() {
         return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

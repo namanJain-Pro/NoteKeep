@@ -36,4 +36,10 @@ public class NoteRepository {
             mNoteDao.delete(note);
         });
     }
+
+    public void update(Note note) {
+        NoteRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mNoteDao.update(note);
+        });
+    }
 }

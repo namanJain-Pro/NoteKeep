@@ -37,9 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         mUserEmail = findViewById(R.id.user_email);
 
         mToolbar.setNavigationOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         });
 
         mLogout.setOnClickListener(v -> {
