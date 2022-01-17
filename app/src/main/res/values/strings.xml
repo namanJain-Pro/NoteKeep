@@ -15,4 +15,6 @@
     <string name="log_out">Log out</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
 </resources>

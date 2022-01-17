@@ -13,7 +13,7 @@ import dev.naman.notetaking.repository.NoteRepository;
 
 public class NoteViewModel extends AndroidViewModel {
 
-    private NoteRepository mRepository;
+    private final NoteRepository mRepository;
     private final LiveData<List<Note>> mAllNotes;
 
     public NoteViewModel(@NonNull Application application) {
