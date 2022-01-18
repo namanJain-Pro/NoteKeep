@@ -31,7 +31,7 @@ public class NewNoteActivity extends AppCompatActivity {
     private State state;
     private NoteViewModel mViewModel;
     private final String[] menu_option = {"Urgent", "High", "Medium", "Low", "Default"};
-    private final String[] colors = {"#ffb8b8", "#ffcfb8", "#ebffb8", "#b8faff", "#fefff0"};
+    private final String[] colors = {"#ffb8b8", "#c7c8ff", "#ebffb8", "#b8faff", "#e3e3e3"};
 
     // Initializing
     private Note note;
@@ -162,6 +162,7 @@ public class NewNoteActivity extends AppCompatActivity {
             menu.setAdapter(adapter);
             if (state == State.New) {
                 note.setPriority(4);
+                note.setColor(colors[4]);
                 menu.setText(menu_option[4], false);
             } else {
                 menu.setText(menu_option[note.getPriority()], false);

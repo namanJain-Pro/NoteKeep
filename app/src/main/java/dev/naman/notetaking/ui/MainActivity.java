@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private NoteViewModel mViewModel;
+    private NoteRecyclerAdapter mAdapter;
 
     private ImageView mProfileImage;
     private RecyclerView mRecyclerView;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
+        mAdapter = new NoteRecyclerAdapter();
 
         // Setting Up User Profile
         FirebaseUser user = mAuth.getCurrentUser();
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Log.d(TAG, "onChanged: List size: " + notes.size());
+                mAdapter.submitList(notes);
             }
         };
         mViewModel.getAllNotes().observe(this, observer);
@@ -78,5 +82,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
             startActivity(intent);
         });
+
+        // Setting up recycler view
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity(tableName = "note_table")
 public class Note implements Serializable {
@@ -86,5 +87,18 @@ public class Note implements Serializable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return id == note.id && priority == note.priority && Objects.equals(content, note.content) && Objects.equals(title, note.title) && Objects.equals(date, note.date) && Objects.equals(color, note.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, title, date, color, priority);
     }
 }
